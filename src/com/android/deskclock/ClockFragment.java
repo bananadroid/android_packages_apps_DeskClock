@@ -120,7 +120,6 @@ public final class ClockFragment extends DeskClockFragment {
 
         final Context context = container.getContext();
         mCityList.setOnTouchListener(new CityListOnLongClickListener(context));
-        fragmentView.setOnLongClickListener(new StartScreenSaverListener());
 
         // On tablet landscape, the clock frame will be a distinct view. Otherwise, it'll be added
         // on as a header to the main listview.
@@ -228,20 +227,6 @@ public final class ClockFragment extends DeskClockFragment {
             Utils.refreshAlarm(getActivity(), mClockFrame);
         } else {
             mCityAdapter.refreshAlarm();
-        }
-    }
-
-    /**
-     * Long pressing over the main clock starts the screen saver.
-     */
-    private final class StartScreenSaverListener implements View.OnLongClickListener {
-
-        @Override
-        public boolean onLongClick(View view) {
-            startActivity(new Intent(getActivity(), ScreensaverActivity.class)
-                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    .putExtra(Events.EXTRA_EVENT_LABEL, R.string.label_deskclock));
-            return true;
         }
     }
 
